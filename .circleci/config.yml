@@ -50,6 +50,15 @@ jobs:
       # See: https://circleci.com/docs/2.0/configuration-reference/#steps
       steps:
         - print_pipeline_id
+  build:
+    docker:
+      - image: cimg/node:17.0
+    steps:
+      - checkout
+      - run:
+          name: "echo an env var that is part of our project"
+          command: |
+            echo $MY_ENV_VAR            
                  
         
 workflows:
@@ -59,4 +68,5 @@ workflows:
       - print_output_file:
           requires: 
             - save_hello_world_output
-      - print_CID      
+      - print_CID 
+      - build     
